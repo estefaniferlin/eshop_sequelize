@@ -5,12 +5,17 @@ const { getCategorias, addCategoria, updateCategoria, deleteCategoria, getCatego
 const rotasCategorias = new Router();
 
 rotasCategorias.route('/categoria')
-    .get(verificaJWT, getCategorias)
-    .post(verificaJWT, addCategoria)
-    .put(verificaJWT, updateCategoria)
+    //.get(verificaJWT, getCategorias)
+    //.post(verificaJWT, addCategoria)
+    //.put(verificaJWT, updateCategoria)
+    .get( getCategorias)
+    .post( addCategoria)
+    .put( updateCategoria)
 
 rotasCategorias.route('/categoria/:codigo')
-    .get(verificaJWT, getCategoriaPorCodigo)
-    .delete(verificaJWT, deleteCategoria)
+    //.get(verificaJWT, getCategoriaPorCodigo)
+    //.delete(verificaJWT, deleteCategoria)
+    .get( getCategoriaPorCodigo)
+    .delete( deleteCategoria)
 
 module.exports = { rotasCategorias };

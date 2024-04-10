@@ -6,7 +6,7 @@ const getProdutosDB = async () => {
         return await Produto.findAll({
             include: [{
                 model: Categoria,
-                as: 'categoria' // Assegure-se de que a associação está definida corretamente nos modelos
+                as: 'categoriaInfo' // Assegure-se de que a associação está definida corretamente nos modelos
             }],
             order: [['codigo', 'ASC']]
         });
@@ -34,7 +34,7 @@ const updateProdutoDB = async (produtoData) => {
             throw new Error(`Nenhum registro encontrado com o código ${codigo} para ser alterado`);
         }
         return await Produto.findByPk(codigo, {
-            include: [{ model: Categoria, as: 'categoria' }]
+            include: [{ model: Categoria, as: 'categoriaInfo' }]
         });
     } catch (err) {
         throw new Error("Erro ao atualizar produto: " + err.message);
@@ -58,7 +58,7 @@ const deleteProdutoDB = async (codigo) => {
 const getProdutoPorCodigoDB = async (codigo) => {
     try {
         const produto = await Produto.findByPk(codigo, {
-            include: [{ model: Categoria, as: 'categoria' }]
+            include: [{ model: Categoria, as: 'categoriaInfo' }]
         });
         if (!produto) {
             throw new Error(`Nenhum registro encontrado com o código ${codigo}`);

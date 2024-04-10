@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../sequelize'); // Ajuste o caminho conforme necessário
+const Produto = require('../entities/produto');
 
 class Categoria extends Model {}
 

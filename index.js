@@ -3,6 +3,8 @@ const cors = require('cors');
 const rotas = require('./routes/rotas');
 const sequelize = require('./sequelize');
 
+require('./associations');
+
 const app = express();
 
 app.use(express.json());

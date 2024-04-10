@@ -16,13 +16,7 @@ Produto.init({
     ativo: DataTypes.BOOLEAN,
     valor: DataTypes.DECIMAL,
     data_cadastro: DataTypes.DATE,
-    categoria: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Categoria,
-            key: 'codigo'
-        }
-    }
+    categoria: DataTypes.INTEGER
 }, {
     sequelize,
     modelName: 'Produto',
@@ -30,6 +24,5 @@ Produto.init({
     timestamps: false
 });
 
-Produto.belongsTo(Categoria, {foreignKey: 'categoria'});
 
 module.exports = Produto;
