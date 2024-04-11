@@ -7,17 +7,12 @@ const { getProdutos, addProduto, updateProduto, deleteProduto, getProdutoPorCodi
 const rotasProdutos = new Router();
 
 rotasProdutos.route('/produto')
-    //.get(verificaJWT, getProdutos)
-    //.post(verificaJWT,addProduto)
-    //.put(verificaJWT,updateProduto)
-    .get( getProdutos)
-    .post(addProduto)
-    .put(updateProduto)
+    .get(verificaJWT, getProdutos)
+    .post(verificaJWT,addProduto)
+    .put(verificaJWT,updateProduto)
 
 rotasProdutos.route('/produto/:codigo')
-    //.get(verificaJWT, getProdutoPorCodigo)
-    //.delete(verificaJWT, deleteProduto)
-    .get( getProdutoPorCodigo)
-    .delete( deleteProduto)
+    .get(verificaJWT, getProdutoPorCodigo)
+    .delete(verificaJWT, deleteProduto)
 
 module.exports = { rotasProdutos };

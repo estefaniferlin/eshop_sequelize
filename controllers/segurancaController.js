@@ -3,9 +3,9 @@ require("dotenv-safe").config(); // terei acesso às variaveis de ambientes cria
 const jwt = require('jsonwebtoken');
 
 const login = async (request, response) => {
+    
     try {
         const usuario = await autenticaUsuarioDB(request.body);
-
         // É importante apenas incluir informações relevantes e não sensíveis no token
         const token = jwt.sign({
             email: usuario.email, 
@@ -16,7 +16,9 @@ const login = async (request, response) => {
 
         return response.json({ auth: true, token: token });
     } catch (err) {
+        console.log("Entrou no catch");
         return response.status(401).json({ auth: false, message: err.message });
+        
     }
 };
 
@@ -26,7 +28,6 @@ function verificaJWT(request, response, next) {
 
     jwt.verify(token, process.env.SECRET, function(err, decoded) {
         if (err) return response.status(401).json({ auth: false, message: 'Falha ao autenticar token. ' + err.message });
-
         // Adicionando o objeto usuário extraído no token para ser usado na próxima requisição
         request.usuario = decoded;
         next();

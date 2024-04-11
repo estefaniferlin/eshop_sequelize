@@ -1,0 +1,51 @@
+-- Criação da database
+CREATE DATABASE eshoplpe;
+
+-- Criação das tabelas
+
+CREATE TABLE categorias (
+   codigo SERIAL NOT NULL PRIMARY KEY, 
+   nome VARCHAR (40) NOT NULL
+);
+
+CREATE TABLE produtos (
+   codigo SERIAL NOT NULL PRIMARY KEY, 
+   nome VARCHAR (50) NOT NULL,
+   descricao TEXT, 
+   quantidade_estoque INTEGER,
+   CHECK (quantidade_estoque >= 0),
+   ativo BOOLEAN NOT NULL, 
+   valor NUMERIC(12,2) NOT NULL, 
+   CHECK (valor >= 0),
+   data_cadastro DATE NOT NULL, 
+   categoria INTEGER NOT NULL, 
+   FOREIGN KEY (categoria) REFERENCES categorias (codigo)
+);
+
+CREATE TABLE usuarios (
+	email VARCHAR(50) NOT NULL PRIMARY KEY, 
+	senha VARCHAR(60) NOT NULL, 
+	tipo CHAR(1)  NOT NULL, 
+	CHECK (tipo = 'T' OR tipo = 'A' OR tipo = 'U'),
+	telefone VARCHAR(14)  NOT NULL, 
+	nome VARCHAR(50) NOT NULL
+);
+
+-- Inserção de registros
+
+INSERT INTO categorias (nome)
+VALUES 
+	('Eletrônicos'), 
+	('Eletrodomésticos'), 
+	('Informática');
+
+INSERT INTO produtos (nome, descricao, quantidade_estoque, ativo, valor, data_cadastro, categoria)
+VALUES 
+	('Mouse USB','Mouse USB', 20, true, 60.0, current_date,1), 
+	('Mouse Sem FIO','Mouse sem fio', 10, true, 120.0, current_date,1),
+	('Teclado USB','Teclado USB', 30, true, 500.0, current_date,1);
+
+INSERT INTO usuarios (email, senha, tipo, telefone, nome) 
+VALUES 
+	('aluno@ifsul.edu.br', '123456', 'A','(54)99984-4348','Aluno'),  
+	('professor@ifsul.edu.br', '123456', 'U','(54)44484-4348','Jorge');

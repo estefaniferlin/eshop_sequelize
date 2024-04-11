@@ -5,6 +5,8 @@ const sequelize = require('./sequelize');
 
 require('./associations');
 
+require('dotenv').config();
+
 const app = express();
 
 app.use(express.json());
